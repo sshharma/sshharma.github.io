@@ -1,0 +1,22 @@
+/* Existing styles */
+
+#dancing-monkey-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    width: 64px; /* Adjust the width as needed */
+    height: 64px; /* Adjust the height as needed */
+}
+
+#dancing-monkey {
+    width: 64px;
+    height: 64px;
+    background: url('monkey-sprite-sheet.png') 0 0;
+    animation: dance 1s steps(4) infinite; /* Adjust steps based on the number of frames */
+}
+
+@keyframes dance {
+    from { background-position: 0 0; }
+    to { background-position: -256px 0; /* Adjust for the total width of your sprite sheet */ }
+}
