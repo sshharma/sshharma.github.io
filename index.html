@@ -73,8 +73,8 @@
 <!--https://www.squarespace.com/ top banner moving idea-->
 <body>
 <div style="text-align: center;">
-    <h2>Information we need to find the best gift for your loved ones.</h2>
-    <p>Please fill out this questionnaire to help us determine the perfect gift.</p>
+    <h2>Welcome to your favourite gifting destination</h2>
+    <p>Please fill out this questionnaire to help us determine the perfect gift for your loved one.</p>
 
     <form action="/submit_form" method="post">
 
@@ -159,14 +159,33 @@
         <script type="text/javascript">
             var giftly = new Giftly({});
 
-            document.getElementById('submit-btn').addEventListener('click', function() {
+            document.getElementById('submit-btn').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the form from being submitted
+
                 // Call the Giftly API here and get the result
-                var result = 'Reccomended Gift'; // Replace this with the actual result from the API
+                var result = 'Recommended Gift'; // Replace this with the actual result from the API
 
                 // Display the result in the box
                 document.getElementById('result-box').innerText = result;
+
+                // Submit the form data using AJAX
+                var formData = new FormData(document.querySelector('form'));
+                fetch('/submit_form', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                }).then(data => {
+                    console.log('Success:', data);
+                }).catch((error) => {
+                    console.error('Error:', error);
+                });
             });
         </script>
+
 
     </form>
 </div>
