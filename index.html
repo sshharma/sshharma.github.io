@@ -2,10 +2,110 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sachin's Home</title>
+    <title>Sachin's</title>
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-
+<!--https://www.squarespace.com/ top banner moving idea-->
 <body>
+<div>
+    <h2>Information we need to find the best gift for your loved ones.</h2>
+    <p>Please fill out this questionnaire to help us determine the perfect gift.</p>
+
+    <form action="/submit_form" method="post">
+
+        <label for="email">Your Email: so we can keep you posted</label>
+        <input type="email" id="email" name="email" placeholder="example@example.com" required>
+
+        <label for="phone">Phone Number: It helps sometimes</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="(000) 000-0000">
+
+        <label for="gender">What is your loved one's gender?</label>
+        <select id="gender" name="gender">
+            <!-- Options should be populated based on requirements -->
+            <option value="" disabled selected>Please Select</option>
+            <!-- Example options -->
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <label for="age">What age group does your loved one belong to?</label>
+        <select id="age" name="age">
+            <option value="" disabled selected>Please Select</option>
+            <option value="18-25">18-25</option>
+            <option value="26-35">26-35</option>
+            <option value="36-45">36-45</option>
+            <option value="46-55">46-55</option>
+            <option value="56+">56+</option>
+        </select>
+
+        <label for="interests">What are their hobbies or interests?</label>
+        <select id="interests" name="interests">
+            <option value="" disabled selected>Please Select</option>
+            <option value="sports">Sports</option>
+            <option value="reading">Reading</option>
+            <option value="art">Art</option>
+            <option value="fashion">Fashion</option>
+            <option value="music">Music</option>
+            <option value="travel">Travel</option>
+            <option value="cooking">Cooking</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="gift_preference">Do they prefer practical gifts or sentimental gifts?</label>
+        <input type="radio" id="practical" name="gift_preference" value="practical">
+        <label for="practical">Practical</label>
+        <input type="radio" id="sentimental" name="gift_preference" value="sentimental">
+        <label for="sentimental">Sentimental</label>
+        <input type="radio" id="both" name="gift_preference" value="both">
+        <label for="both">Both</label>
+
+        <label for="favorite_color">What is their favorite color?</label>
+        <input type="text" id="favorite_color" name="favorite_color" placeholder="Enter favorite color">
+
+        <!-- Add a submit button to submit the form -->
+        <input type="submit" value="Submit">
+
+    </form>
+</div>
+
+
+
+
+
+
+
+
+<!--    Test code above this-->
 <div id="banner">
     <h1 id="greeting"></h1>
     <p id="date"></p>
@@ -29,13 +129,13 @@
     // Example: Set the greeting based on the time of day
     const now = new Date();
     const hours = now.getHours();
-    // let greeting;
+    let greeting;
     // if (hours < 12) {
-    //     greeting = "Good morning !! this is sachin's website and we are coming up with innovative content soon";
+    //     greeting = "Good morning, this is sachin's website and we are coming up with innovative content soon";
     // } else if (hours < 18) {
-    //     greeting = "Good afternoon !!  this is sachin's website and we are coming up with innovative content soon";
+    //     greeting = "Good afternoon, this is sachin's website and we are coming up with innovative content soon";
     // } else {
-    //     greeting = "Good evening !! this is sachin's website and we are coming up with innovative content soon";
+    //     greeting = "Good evening, this is sachin's website and we are coming up with innovative content soon";
     // }
     // document.getElementById("greeting").textContent = greeting;
     // // ... (similarly update date and weather)
