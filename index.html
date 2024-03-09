@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Sachin's</title>
+    <title>Gift GPT</title>
     <style>
         /* Add your custom CSS styles here */
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
         }
         form {
             max-width: 400px;
             margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
         }
         label {
             display: block;
             margin-bottom: 10px;
         }
         input, select {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
@@ -28,6 +33,7 @@
             color: #fff;
             border: none;
             cursor: pointer;
+            display: block; /* Add this line to make the submit button visible */
         }
         input[type="submit"]:hover {
             background-color: #0056b3;
@@ -36,7 +42,7 @@
 </head>
 <!--https://www.squarespace.com/ top banner moving idea-->
 <body>
-<div>
+<div style="text-align: center;">
     <h2>Information we need to find the best gift for your loved ones.</h2>
     <p>Please fill out this questionnaire to help us determine the perfect gift.</p>
 
@@ -83,6 +89,7 @@
 
         <label for="gift_preference">Do they prefer practical gifts or sentimental gifts?</label>
         <input type="radio" id="practical" name="gift_preference" value="practical">
+
         <label for="practical">Practical</label>
         <input type="radio" id="sentimental" name="gift_preference" value="sentimental">
         <label for="sentimental">Sentimental</label>
@@ -92,6 +99,15 @@
         <label for="favorite_color">What is their favorite color?</label>
         <input type="text" id="favorite_color" name="favorite_color" placeholder="Enter favorite color">
 
+
+        <label for="clothing_size">What is their clothing size?</label>
+        <input type="text" id="clothing_size" name="clothing_size" placeholder="Enter clothing size">
+
+        <label for="specific_day">Have you thought of any specific day?</label>
+        <input type="date" id="specific_day" name="specific_day">
+
+        <label for="allergies">Do they have any allergies or dietary restrictions?</label>
+        <textarea id="allergies" name="allergies" rows="4" placeholder="Enter allergies or dietary restrictions
         <!-- Add a submit button to submit the form -->
         <input type="submit" value="Submit">
 
@@ -129,6 +145,8 @@
     // Example: Set the greeting based on the time of day
     const now = new Date();
     const hours = now.getHours();
+    const minute = now.getMinutes()
+    const second = now.getSeconds()
     let greeting;
     // if (hours < 12) {
     //     greeting = "Good morning, this is sachin's website and we are coming up with innovative content soon";
