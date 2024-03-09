@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Gift GPT</title>
@@ -10,7 +10,7 @@
             background-color: #f4f4f4;
         }
         form {
-            max-width: 400px;
+            max-width: 500px;
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
@@ -29,6 +29,7 @@
             border-radius: 5px;
         }
         input[type="submit"] {
+            margin-top: 30px;
             background-color: #007bff;
             color: #fff;
             border: none;
@@ -38,8 +39,37 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        .radio-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .radio-container input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            appearance: none;
+            outline: none;
+        }
+        .radio-container input[type="radio"]:checked {
+            background: #000;
+        }
+
+        #allergies {
+            width: 90%; /* Adjust this value to set the width */
+        }
     </style>
+    <script
+    function formatPhoneNumber() {
+    var input = document.getElementById('phone');
+    var phoneNumber = input.value.replace(/\D/g,''); // Remove all non-digits
+    phoneNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3'); // Format the phone number
+    input.value = phoneNumber;
+    }
+    </script>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/giftly@latest/dist/index.min.js"></script>
 <!--https://www.squarespace.com/ top banner moving idea-->
 <body>
 <div style="text-align: center;">
@@ -52,7 +82,14 @@
         <input type="email" id="email" name="email" placeholder="example@example.com" required>
 
         <label for="phone">Phone Number: It helps sometimes</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="(000) 000-0000">
+<!--        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="(000) 000-0000">-->
+        <input type="tel" id="phone" name="phone" onkeyup="function formatPhoneNumber() {
+        var input = document.getElementById('phone');
+        var phoneNumber = input.value.replace(/\D/g,''); // Remove all non-digits
+        phoneNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3'); // Format the phone number
+        input.value = phoneNumber;
+        }
+        formatPhoneNumber()" placeholder="(000) 000-0000">
 
         <label for="gender">What is your loved one's gender?</label>
         <select id="gender" name="gender">
@@ -61,6 +98,7 @@
             <!-- Example options -->
             <option value="male">Male</option>
             <option value="female">Female</option>
+            <option value = "other">Other</option>
             <!-- Add more options as needed -->
         </select>
 
@@ -86,15 +124,21 @@
             <option value="cooking">Cooking</option>
             <option value="other">Other</option>
         </select>
-
         <label for="gift_preference">Do they prefer practical gifts or sentimental gifts?</label>
-        <input type="radio" id="practical" name="gift_preference" value="practical">
+        <div class="radio-container">
+            <input type="radio" id="practical" name="gift_preference" value="practical">
+            <label for="practical">Practical</label>
+        </div>
+        <div class="radio-container">
+            <input type="radio" id="sentimental" name="gift_preference" value="sentimental">
+            <label for="sentimental">Sentimental</label>
+        </div>
+        <div class="radio-container">
+            <input type="radio" id="both" name="gift_preference" value="both">
+            <label for="both">Both</label>
+        </div>
 
-        <label for="practical">Practical</label>
-        <input type="radio" id="sentimental" name="gift_preference" value="sentimental">
-        <label for="sentimental">Sentimental</label>
-        <input type="radio" id="both" name="gift_preference" value="both">
-        <label for="both">Both</label>
+
 
         <label for="favorite_color">What is their favorite color?</label>
         <input type="text" id="favorite_color" name="favorite_color" placeholder="Enter favorite color">
@@ -107,9 +151,24 @@
         <input type="date" id="specific_day" name="specific_day">
 
         <label for="allergies">Do they have any allergies or dietary restrictions?</label>
-        <textarea id="allergies" name="allergies" rows="4" placeholder="Enter allergies or dietary restrictions
+        <textarea id="allergies" name="allergies" rows="4" placeholder="Enter allergies or dietary restrictions"></textarea>
         <!-- Add a submit button to submit the form -->
-        <input type="submit" value="Submit">
+        <input type="submit" class="submit-button" value="Submit" id="submit-btn">
+        <div class="result-box" id="result-box"></div>
+
+        <script type="text/javascript">
+            var giftly = new Giftly({
+                //apiKey: 'api_test_key'
+            });
+
+            document.getElementById('submit-btn').addEventListener('click', function() {
+                // Call the Giftly API here and get the result
+                var result = 'Reccomended Gift'; // Replace this with the actual result from the API
+
+                // Display the result in the box
+                document.getElementById('result-box').innerText = result;
+            });
+        </script>
 
     </form>
 </div>
